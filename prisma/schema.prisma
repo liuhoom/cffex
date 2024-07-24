@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./cffex.db"
+}
+
+// datasource db {
+//   provider = "mysql"
+//   url = "mysql://root:@localhost:3306/test"
+// }
+
+// 看整体多空和成交量变化;
+// datatypeid: 0表示成交量,1表示多单,2表示空单;
+// varvolume: 持仓增减;
+// volume: datatypeid=0为成交量;datatypeid=1持多单总量;datatypeid=2持空单总量;
+// 市商的也在这个表了; 默认是非市商,值为"总和", 还有中信和国泰
+model ccpm {
+  id Int @id @default(autoincrement())
+  tradingday DateTime?
+  productid String?
+  instrumentid String?
+  shortname String?
+
+  datatypeid Int?
+  varvolume Int? @default(0)
+  volume BigInt? @default(0)
+}
+
+
+// tradingday: tradingday,
+// productid: productid,
+// instrumentid: instrumentid,
+// aName: productids[productid].indexOf(instrumentid),
+
+// openprice: openprice,
+// closeprice: closeprice,
+// highestprice: highestprice,
+// lowestprice: lowestprice,
+// openinterest: openinterest,
+// volume: volume,
+// 基差数据?
+
+model rtj {
+  id Int @id @default(autoincrement())
+  tradingday DateTime?
+  productid String?
+  instrumentid String?
+  season4 Int?    // 当月,下月,下季,隔季  0,1,2,3
+  openprice Float?
+  closeprice Float?
+  highestprice Float?
+  lowestprice Float?
+  openinterest Int? @default(0)
+  volume BigInt? @default(0)
+}
+
+model ind {
+  id Int @id @default(autoincrement())
+  tradingday DateTime?
+  instrumentid String?
+
+  volume BigInt?
+  open Float?
+  high Float?
+  low Float?
+  close Float?
+  chg Float?
+}
