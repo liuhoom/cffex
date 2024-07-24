@@ -2,6 +2,7 @@ const axios = require("axios");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+// need to change: to IH\IF\IC\IM
 symbolList = ["SH000016", "SH000300", "SH000905", "SH000852"];
 
 const startDate = Date.now(); // 当前时间的时间戳
