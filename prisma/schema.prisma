@@ -3,9 +3,14 @@ generator client {
   binaryTargets = ["native", "linux-musl"]
 }
 
+// datasource db {
+//   provider = "sqlite"
+//   url      = "file:./cffex.db"
+// }
+
 datasource db {
-  provider = "sqlite"
-  url      = "file:./cffex.db"
+  provider = "postgresql"
+  url      = "postgresql://o5ih40:xau_ntjlxY6ZPkUdkVRk2nuzJKDuWIlHy1q12@eu-west-1.sql.xata.sh/cffex:main?sslmode=require"
 }
 
 // datasource db {
