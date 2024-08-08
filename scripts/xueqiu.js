@@ -12,7 +12,7 @@ const client = wrapper(axios.create({ jar: cookieJar, withCredentials: true }));
 symbolList = ['SH000016', 'SH000300', 'SH000905', 'SH000852'];
 
 const startDate = Date.now(); // 当前时间的时间戳
-const count = -220; // kline的个数, -1就是当天数据; 历史数据-360, 360天的数据;
+const count = -1; // kline的个数, -1就是当天数据; 历史数据-360, 360天的数据;
 
 const parseData = (elem, jsonData) => {
   data = jsonData.data.item;
@@ -53,17 +53,17 @@ const parseData = (elem, jsonData) => {
     });
   });
 
-  // const dbcreate = async () => {
-  //   const result = await prisma.ind.createMany({
-  //     data: dataList,
-  //   });
-  // };
+  const dbcreate = async () => {
+    const result = await prisma.ind.createMany({
+      data: dataList,
+    });
+  };
 
-  // dbcreate()
-  //   .catch((e) => console.error(e))
-  //   .finally(async () => await prisma.$disconnect);
+  dbcreate()
+    .catch((e) => console.error(e))
+    .finally(async () => await prisma.$disconnect);
 
-  console.log(dataList);
+  // console.log(dataList);
 };
 
 async function loginToXueqiu() {
