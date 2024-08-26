@@ -107,3 +107,10 @@ LEFT JOIN
      FROM AggregatedValues) b
 ON a.productid = b.productid AND a.tradingday = (SELECT prev_tradingday FROM PreviousDays WHERE tradingday = a.tradingday AND productid = a.productid)
 ORDER BY a.tradingday;
+
+
+
+## 问题1
+>>> SyntaxError: Unexpected token 'export'
+
+解决: 在next.config.js配置里面添加[ "antd", "@ant-design", "rc-util", "rc-pagination", "rc-picker", "rc-notification", "rc-tooltip", "rc-tree", "rc-table", ]

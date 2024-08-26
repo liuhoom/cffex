@@ -1,8 +1,12 @@
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
+import React from 'react';
+const productid = process.env.PRODUCTIDS;
 
-const inter = Inter({ subsets: ['latin'] });
+// const apires = productid.map((ele) => {
+//   return { key: ele };
+// });
+
+// console.log(apires);
 
 export default function Home() {
-  return <div>heehda cffex</div>;
+  return <div>{JSON.stringify(productid)}</div>;
 }

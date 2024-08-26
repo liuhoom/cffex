@@ -8,7 +8,7 @@ const axiosRetry = require('axios-retry');
 // axiosRetry(axios, { retries: 3 });
 
 const base_url = 'http://www.cffex.com.cn/sj/ccpm/';
-const startDate = new Date(2023, 8, 1);
+const startDate = new Date(2024, 7, 25);
 const endDate = new Date(); // 注意这里是4月，因为 JavaScript 中月份是从0开始的
 let currentDate = new Date(startDate);
 
@@ -59,15 +59,15 @@ const parseData = (xmlString) => {
       });
     });
 
-    const dbcreate = async () => {
-      const result = await prisma.ccpm.createMany({
-        data: dataList,
-      });
-    };
+    // const dbcreate = async () => {
+    //   const result = await prisma.ccpm.createMany({
+    //     data: dataList,
+    //   });
+    // };
 
-    dbcreate()
-      .catch((e) => console.error(e))
-      .finally(async () => await prisma.$disconnect);
+    // dbcreate()
+    //   .catch((e) => console.error(e))
+    //   .finally(async () => await prisma.$disconnect);
   });
 };
 
@@ -98,7 +98,6 @@ while (currentDate <= endDate) {
             Accept: 'text/plain, */*; q=0.01',
             'Accept-Language':
               'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
-            Connection: 'keep-alive',
             Referer: 'http://www.cffex.com.cn/ccpm/',
             'User-Agent':
               'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0',
