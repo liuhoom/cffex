@@ -1,9 +1,8 @@
 import React from 'react';
+import FutureTable from '../../components/futures/table';
 
-const productid = process.env.PRODUCTIDS;
-
-const Future = () => {
-  return <div>{JSON.stringify(productid)}</div>;
+const Futuer = () => {
+  return <FutureTable />;
 };
 
-export default Future;
+export default Futuer;

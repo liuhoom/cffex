@@ -1,5 +1,6 @@
+import { Main } from 'next/document';
 import React from 'react';
 
 export default function Home() {
-  return <div>HomePage</div>;
+  <div>aaa</div>;
 }

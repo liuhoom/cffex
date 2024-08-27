@@ -114,3 +114,14 @@ ORDER BY a.tradingday;
 >>> SyntaxError: Unexpected token 'export'
 
 解决: 在next.config.js配置里面添加[ "antd", "@ant-design", "rc-util", "rc-pagination", "rc-picker", "rc-notification", "rc-tooltip", "rc-tree", "rc-table", ]
+
+
+## 问题2
+>>> 连表查询
+https://geek-docs.com/mysql/mysql-ask-answer/842_mysql_left_joins_and_aggregation_in_a_single_prisma_query.html
+
+
+## 产品涨什么样子
+header;
+上侧是四个产品
+左侧是基差/ccpm/大盘信息等;
