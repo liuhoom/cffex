@@ -3,7 +3,9 @@ import React from 'react';
 
 const Navbar = () => {
   return (
-    <nav class='text-white py-4 px-3 bg-gray-700 items-center justify-between'></nav>
+    <nav className='bg-gray-900 text-white px-4 py-4 flex item-center justify-between'>
+      aaa
+    </nav>
   );
 };
 

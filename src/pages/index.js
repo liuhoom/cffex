@@ -1,6 +1,9 @@
-import { Main } from 'next/document';
 import React from 'react';
 
 export default function Home() {
-  <div>aaa</div>;
+  return (
+    <div>
+      <h2 className='text-red-900'>What's happening</h2>
+    </div>
+  );
 }

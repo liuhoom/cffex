@@ -86,7 +86,7 @@ const FutureTable = () => {
     },
   ];
   return (
-    <>
+    <div className='pt-4 bg-green-300'>
       <Space
         style={{
           marginBottom: 16,
@@ -97,7 +97,7 @@ const FutureTable = () => {
         <Button onClick={clearAll}>ClearAll</Button>
       </Space>
       <Table columns={columns} dataSource={data} onChange={handleChange} />
-    </>
+    </div>
   );
 };
 export default FutureTable;
