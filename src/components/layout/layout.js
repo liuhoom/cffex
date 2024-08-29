@@ -7,7 +7,7 @@ const PageLayout = ({ children }) => {
     <>
       <Navbar />
       <Sidebar />
-      <main className='pt-4'> {children}</main>
+      <main className='pt-4'> {children} </main>
     </>
   );
 };
