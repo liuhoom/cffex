@@ -8,7 +8,7 @@ const axiosRetry = require('axios-retry');
 // axiosRetry(axios, { retries: 3 });
 
 const base_url = 'http://www.cffex.com.cn/sj/ccpm/';
-const startDate = new Date(2024, 7, 25);
+const startDate = new Date(2023, 8, 1);
 const endDate = new Date(); // 注意这里是4月，因为 JavaScript 中月份是从0开始的
 let currentDate = new Date(startDate);
 
@@ -23,63 +23,86 @@ const parseData = (xmlString) => {
   // 0: 成交量排名;
   // 1: 多单排名;
   // 2: 空单排名;
+  let dataObj = {}; // 存储计算后的和数据
   xml2js.parseString(xmlString, (err, result) => {
     if (err) throw err;
 
     const data = result.positionRank.data;
 
-    dataList = []; // 数据object
+    let dataList = []; // 数据object,分券商存储
 
     data.forEach((element) => {
-      const tradingday = element.tradingday[0];
-      const productid = element.productid[0];
-      const instrumentid = element.instrumentid[0];
-      const shortname = element.shortname[0];
-
       const datatypeid = parseInt(element.datatypeid[0]);
+
+      if (datatypeid === 0) {
+        return;
+      }
+
+      const instrumentid = element.instrumentid[0];
       const varvolume = parseInt(element.varvolume[0]);
       const volume = parseInt(element.volume[0]);
 
-      dataList.push({
-        tradingday: new Date(
-          parseInt(tradingday.substring(0, 4)),
-          parseInt(tradingday.substring(4, 6)) - 1,
-          parseInt(tradingday.substring(6, 8)),
-          8,
-          0,
-          0
-        ),
-        productid: productid,
-        instrumentid: instrumentid,
-        shortname: shortname,
+      if (!(instrumentid in dataObj)) {
+        dataObj[instrumentid] = {};
+        dataObj[instrumentid][1] = {};
+        dataObj[instrumentid][2] = {};
+        dataObj[instrumentid][1]['v'] = 0;
+        dataObj[instrumentid][2]['v'] = 0;
+        dataObj[instrumentid][1]['vchg'] = 0;
+        dataObj[instrumentid][2]['vchg'] = 0;
+      }
 
-        datatypeid: datatypeid,
-        varvolume: varvolume,
-        volume: volume,
-      });
+      dataObj[instrumentid][datatypeid]['vchg'] += varvolume;
+      dataObj[instrumentid][datatypeid]['v'] += volume;
     });
-
-    // const dbcreate = async () => {
-    //   const result = await prisma.ccpm.createMany({
-    //     data: dataList,
-    //   });
-    // };
-
-    // dbcreate()
-    //   .catch((e) => console.error(e))
-    //   .finally(async () => await prisma.$disconnect);
   });
+  return dataObj;
 };
 
-const saveFile = (name, data) => {
-  fs.writeFileSync(name, data, 'utf8', (err) => {
-    if (err) throw err;
-  });
+const dbPut = async (dataList) => {
+  const dbcreate = async () => {
+    const result = await prisma.ccpm.createMany({
+      data: dataList,
+    });
+  };
+
+  dbcreate()
+    .catch((e) => console.error(e))
+    .finally(async () => await prisma.$disconnect);
+};
+
+const formatFun = (curDate, productid, dataObj) => {
+  let dataList = [];
+
+  for (let ins in dataObj) {
+    if (dataObj.hasOwnProperty(ins)) {
+      let dataTypes = dataObj[ins];
+
+      for (let datatype in dataTypes) {
+        if (dataTypes.hasOwnProperty(datatype)) {
+          let values = dataTypes[datatype];
+          let dataItem = {
+            tradingday: curDate,
+            productid,
+            instrumentid: ins,
+            datatypeid: parseInt(datatype),
+            volume: values.v,
+            varvolume: values.vchg,
+          };
+          dataList.push(dataItem);
+        }
+      }
+    }
+  }
+
+  return dataList;
 };
 
 while (currentDate <= endDate) {
   // 判断当前日期是否为周六或周日
   if (currentDate.getDay() !== 0 && currentDate.getDay() !== 6) {
+    const requestDate = new Date(currentDate);
+
     // 构建日期对应的 URL
 
     product.forEach((element) => {
@@ -108,7 +131,12 @@ while (currentDate <= endDate) {
         .then((response) => {
           if (response.status === 200) {
             // parseData(response.data);
-            saveFile(`${element}/${year}-${month}-${day}.xml`, response.data);
+            const resData = formatFun(
+              requestDate,
+              element,
+              parseData(response.data)
+            );
+            dbPut(resData);
           } else {
             console.log(`${url} is not 200`);
           }

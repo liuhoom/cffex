@@ -23,7 +23,6 @@ model ccpm {
   tradingday DateTime?
   productid String?
   instrumentid String?
-  shortname String?
 
   datatypeid Int?
   varvolume Int? @default(0)
