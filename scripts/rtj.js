@@ -11,7 +11,7 @@ const base_url = 'http://www.cffex.com.cn/sj/hqsj/rtj/';
 // const endDate = new Date();
 // let currentDate = new Date(startDate);
 
-const startDate = new Date(2023, 8, 1); // 注意这里是1月，因为 JavaScript 中月份是从0开始的
+const startDate = new Date(2024, 7, 29); // 注意这里是1月，因为 JavaScript 中月份是从0开始的
 const endDate = new Date();
 let currentDate = new Date(startDate);
 
@@ -29,7 +29,6 @@ const parseData = async (url, xmlString) => {
       const data = result.dailydatas.dailydata;
       dailyList = []; // 数据object
       productids = []; // instrumentid的集合,方便做下月/当月/下季等
-      console.log(url, data.length);
 
       data.forEach((element) => {
         const productid = element.productid[0];
@@ -81,6 +80,8 @@ const parseData = async (url, xmlString) => {
       console.error(`error: ${url}`);
     }
   });
+
+  // console.log(JSON.stringify(dailyList));
 
   // async function batchInsert(data, batchSize) {
   //   for (let i = 0; i < data.length; i += batchSize) {

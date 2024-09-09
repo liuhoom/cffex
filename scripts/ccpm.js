@@ -8,7 +8,7 @@ const axiosRetry = require('axios-retry');
 // axiosRetry(axios, { retries: 3 });
 
 const base_url = 'http://www.cffex.com.cn/sj/ccpm/';
-const startDate = new Date(2023, 8, 1);
+const startDate = new Date(2024, 3, 24);
 const endDate = new Date(); // 注意这里是4月，因为 JavaScript 中月份是从0开始的
 let currentDate = new Date(startDate);
 

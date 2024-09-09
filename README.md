@@ -125,3 +125,7 @@ https://geek-docs.com/mysql/mysql-ask-answer/842_mysql_left_joins_and_aggregatio
 header;
 上侧是四个产品
 左侧是基差/ccpm/大盘信息等;
+
+
+## CCPM 持仓排名的SQL
+SELECT datetime(t1.tradingday/1000, 'unixepoch', 'localtime'),t1.productid,t1.instrumentid,(t1.varvolume - t2.varvolume) AS difference FROM ccpm t1 JOIN ccpm t2 ON t1.tradingday = t2.tradingday AND t1.productid = t2.productid AND t1.instrumentid = t2.instrumentid AND t1.datatypeid = 1 AND t2.datatypeid = 2 order by t1.tradingday,t1.productid,t1.instrumentid;
