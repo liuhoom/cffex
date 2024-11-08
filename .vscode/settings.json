@@ -1,0 +1,40 @@
+{
+  "workbench.colorTheme": "Default Light+",
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "files.associations": {
+    "*.lua": "lua",
+    "*.py": "python"
+  },
+  "files.autoSave": "afterDelay",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "emmet.useInlineCompletions": true,
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "git.confirmSync": false,
+  "files.eol": "\n",
+  "emmet.syntaxProfiles": {},
+  "emmet.showSuggestionsAsSnippets": true,
+  "tailwindCSS.emmetCompletions": true,
+  "window.commandCenter": false,
+  "files.exclude": {
+    "**/.git": false
+  },
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "git.suggestSmartCommit": false,
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+  "workbench.editorAssociations": {
+    "*.xlsx": "default"
+  },
+  "editor.fontSize": 16,
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "vue-html": "html",
+    "plaintext": "html"
+  }
+}
