@@ -6,32 +6,48 @@ import { HomeIcon } from '@heroicons/react/solid';
 const Header = () => {
   const router = useRouter();
   return (
-    <div className='flex items-center justify-between max-w-6xl mx-4 xl:mx-auto shadow-sm border-b sticky top-0 bg-white z-30'>
-      <div className='h-24 w-24 hidden relative lg:inline-grid'>
-        <Image
-          src='http://www.jennexplores.com/wp-content/uploads/2015/09/Instagram_logo_black.png'
-          layout='fill'
-          className='object-contain'
-          onClick={() => router.push('/')}
-        />
-      </div>
-      <div className='h-24 w-12 relative lg:hidden'>
-        <Image
-          src='/Instagram_logo_2022.svg.png'
-          layout='fill'
-          className='object-contain'
-          onClick={() => router.push('/')}
-        />
-      </div>
+    <div className='bg-white shadow-sm border-b top-0 sticky z-30'>
+      <div className='flex items-center justify-between mx-4 max-w-6xl xl:mx-auto'>
+        {/* left */}
+        <div className='flex'>
+          <div className='cursor-pointer relative h-24 w-24 hidden lg:inline-grid'>
+            <Image
+              className='object-contain'
+              src='http://www.jennexplores.com/wp-content/uploads/2015/09/Instagram_logo_black.png'
+              layout='fill'
+            />
+          </div>
 
-      <div className='flex relative'>
-        <SearchIcon className='text-gray-400 h-4' />
-        <input type='text' className='' placeholder='Search' />
-      </div>
+          <div className='cursor-pointer relative h-24 w-10 lg:hidden'>
+            <Image
+              className='object-contain'
+              src='/Instagram_logo_2022.svg.png'
+              layout='fill'
+            />
+          </div>
+        </div>
 
-      <div className='flex'>
-        <HomeIcon className='h-4' />
-        <PlusCircleIcon className='h-4' />
+        {/* middle */}
+        <div className='relative mt-1'>
+          <div className='absolute top-2 left-2'>
+            <SearchIcon className='h-5 text-gray-400' />
+          </div>
+          <input
+            className='pl-8 rounded-md text-sm focus:ring-black focus:border-black border-gray-500'
+            placeholder='Search'
+          />
+        </div>
+
+        {/* right */}
+        <div className='flex space-x-4 items-center'>
+          <HomeIcon className='h-6 cursor-pointer hover:scale-125 transition-transform duration-200 ease-out hidden md:inline-flex' />
+          <PlusCircleIcon className='h-6 cursor-pointer hover:scale-125 transition-transform duration-200 ease-out' />
+          <img
+            src='https://static.skillshare.com/uploads/users/350301760/user-image-large.jpg?753816048'
+            alt='user-image'
+            className='h-10 rounded-full cursor-pointer'
+          />
+        </div>
       </div>
     </div>
   );
