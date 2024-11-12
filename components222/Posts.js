@@ -1,3 +1,4 @@
+import React from 'react';
 import Post from './Post';
 
 export default function Posts() {
@@ -20,7 +21,7 @@ export default function Posts() {
     },
   ];
   return (
-    <div className=''>
+    <div>
       {posts.map((post) => (
         <Post
           key={post.id}
