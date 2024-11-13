@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Story({ img, username, id }) {
   return (
-    <div className=''>
+    <div className='' key={id}>
       <img
         src={img}
         alt={username}
