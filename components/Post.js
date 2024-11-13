@@ -7,44 +7,43 @@ import {
 } from '@heroicons/react/outline';
 import React from 'react';
 
-export default function Post({ key, id, img, userImg, caption, username }) {
+export default function Post({ username, id, caption, img, userImg }) {
   return (
     <div>
-      <div className='flex items-center p-5'>
+      {/* header */}
+      <div className='flex items-center'>
         <img
           src={userImg}
           alt={username}
-          className='h-12 rounded-full border object-cover p-1 mr-3'
+          className='h-10 rounded-full cursor-pointer mr-3'
         />
-        <p className='font-bold flex-1'>{username}</p>
-        <DotsHorizontalIcon className='h-5' />
+        <div className='text-sm flex-1'>{username}</div>
+        <DotsHorizontalIcon className='h-5 cursor-pointer' />
       </div>
 
-      <img src={img} alt='' className='object-cover w-full' />
+      {/* Post */}
+      <img src={img} alt={id} className='w-full object-contain' />
 
-      <div className='flex items-center justify-between pt-4 px-4'>
-        <div className='flex space-x-3'>
-          <HeartIcon className='btn' />
-          <ChatIcon className='btn' />
+      <div className='flex'>
+        <div className='flex flex-1 space-x-2'>
+          <HeartIcon className='header-icons' />
+          <ChatIcon className='header-icons' />
         </div>
-        <BookmarkIcon className='btn' />
+        <BookmarkIcon className='header-icons' />
       </div>
 
-      <p className='p-5 truncate'>
-        <span className='font-bold mr-2'>{username}</span>
-        {caption}
-      </p>
+      {/* Comments */}
+      <div className='flex items-center'>
+        <h2 className='font-bold'>{username}</h2>
+        <p className='text-sm ml-2'>{caption}</p>
+      </div>
 
-      <div className='flex items-center p-4'>
+      {/* postcomments */}
+      <form className='flex items-center'>
         <EmojiHappyIcon className='h-7' />
-
-        <input
-          type='text'
-          className='border-none focus:ring-0 flex-1'
-          placeholder='Input your comment...'
-        />
-        <button className='text-blue-400 font-bold'>Post</button>
-      </div>
+        <input type='text' placeholder='Enter your comment...' className='border-none rounded-sm' />
+        <button className='font-bold text-blue-500'>Post</button>
+      </form>
     </div>
   );
 }

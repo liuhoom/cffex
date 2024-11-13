@@ -9,6 +9,9 @@ const nextConfig = {
       {
         hostname: 'upload.wikimedia.org',
       },
+      {
+        hostname: 'static.skillshare.com',
+      },
     ],
   },
 };

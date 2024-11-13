@@ -4,44 +4,47 @@ import Image from 'next/image';
 
 export default function Header() {
   return (
-    <div className='bg-white sticky z-30 border-b top-0 shadow-sm'>
-      <div className='flex justify-between items-center max-w-6xl mx-4 xl:mx-auto'>
+    <div className='border-b bg-white shadow-xl sticky z-30 top-0'>
+      <div className='flex items-center justify-between mx-4 max-w-6xl xl:mx-auto'>
         <div>
-          <div className='h-24 w-24 relative cursor-pointer hidden lg:inline-grid'>
+          <div className='h-24 w-24 relative hidden lg:inline-flex cursor-pointer'>
             <Image
               src='http://www.jennexplores.com/wp-content/uploads/2015/09/Instagram_logo_black.png'
               layout='fill'
               className='object-contain'
+              alt='lg-image'
+              priority
             />
           </div>
-          <div className='h-24 w-10 top-[28px] relative cursor-pointer lg:hidden'>
+          <div className='h-24 w-10 relative lg:hidden cursor-pointer'>
             <Image
               src='/Instagram_logo_2022.svg.png'
-              width={200}
-              height={200}
-              className='object-fill'
+              layout='fill'
+              className='object-contain'
+              alt='sm-image'
             />
           </div>
         </div>
 
-        <div className='relative'>
-          <div className='top-2 absolute left-2'>
-            <SearchIcon className='h-7 text-gray-500' />
+        <div className='relative mt-1'>
+          <div className='absolute top-2 left-2'>
+            <SearchIcon className='w-7 text-gray-500' />
           </div>
           <input
             type='text'
             placeholder='Search'
-            className='rounded-md bg-gray-50 border-gray-500 pl-10 focus:ring-black focus:border-black'
+            className='pl-10 border-gray-500 rounded-md focus:ring-black focus:border-black'
           />
         </div>
 
         <div className='flex space-x-4 items-center'>
           <HomeIcon className='header-icons hidden md:inline-flex' />
           <PlusCircleIcon className='header-icons' />
+
           <img
             src='https://static.skillshare.com/uploads/users/350301760/user-image-large.jpg?753816048'
+            className='h-10 rounded-full cursor-pointer border border-gray-200 p-[1.5px]'
             layout='fill'
-            className='cursor-pointer h-10 rounded-full'
             alt='user-image'
           />
         </div>

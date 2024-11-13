@@ -19,13 +19,13 @@ export default function Posts() {
       caption: 'New picture from my city',
     },
   ];
-
   return (
     <div className=''>
       {posts.map((post) => (
         <Post
-          username={post.username}
+          key={post.id}
           id={post.id}
+          username={post.username}
           userImg={post.userImg}
           img={post.img}
           caption={post.caption}

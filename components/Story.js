@@ -1,12 +1,14 @@
-export default function Story({ username, img, id }) {
+import React from 'react';
+
+export default function Story({ img, username, id }) {
   return (
-    <div>
+    <div className=''>
       <img
         src={img}
         alt={username}
-        className='h-12 rounded-full border-2 border-red-400 p-[1.5px] cursor-pointer hover:scale-125 transition-transform duration-200 ease-out'
+        className='h-14 rounded-full border-2 p-[1.5px] border-red-500 cursor-pointer hover:scale-125 transition-transform ease-out duration-200'
       />
-      <p className='w-14 truncate'>{username}</p>
+      <p className='text-sm w-14 truncate'>{username}</p>
     </div>
   );
 }
