@@ -19,7 +19,12 @@ export default function Stories() {
   return (
     <div className='flex space-x-2 border border-gray-200 mt-8 p-6 bg-white rounded-md overflow-x-scroll scrollbar-none'>
       {userStroies.map((user) => (
-        <Story img={user.img} id={user.id} username={user.username} />
+        <Story
+          key={user.id}
+          img={user.img}
+          id={user.id}
+          username={user.username}
+        />
       ))}
     </div>
   );
