@@ -40,6 +40,7 @@ export default function Posts() {
     <div className=''>
       {posts.map((post) => (
         <Post
+          key={post.id}
           username={post.username}
           id={post.id}
           userImg={post.userImg}
