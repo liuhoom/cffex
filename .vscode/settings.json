@@ -9,7 +9,7 @@
   },
   "files.autoSave": "afterDelay",
   "typescript.updateImportsOnFileMove.enabled": "always",
-  
+
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.tabSize": 2,
@@ -65,5 +65,6 @@
     "javascript": "javascriptreact",
     "vue-html": "html",
     "plaintext": "html"
-  }
+  },
+  "prettier.semi": false
 }

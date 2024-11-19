@@ -1,6 +1,6 @@
-import NextAuth from 'next-auth';
-import GithubProvider from 'next-auth/providers/github';
-import GoogleProvider from 'next-auth/providers/google';
+import NextAuth from 'next-auth'
+import GithubProvider from 'next-auth/providers/github'
+import GoogleProvider from 'next-auth/providers/google'
 
 const authOptions = {
   // Configure one or more authentication providers
@@ -33,11 +33,11 @@ const authOptions = {
       session.user.username = session.user.name
         .split(' ')
         .join('')
-        .toLocaleLowerCase();
-      session.user.uid = token.sub;
-      return session;
+        .toLocaleLowerCase()
+      session.user.uid = token.sub
+      return session
     },
   },
-};
+}
 
-export default NextAuth(authOptions);
+export default NextAuth(authOptions)
