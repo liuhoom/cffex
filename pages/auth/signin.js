@@ -24,6 +24,7 @@ export default function signin({ providers }) {
 
           {Object.values(providers).map((p) => (
             <button
+              key={p.id}
               className='bg-red-400 rounded-lg p-3 text-white hover:bg-red-600 my-1'
               onClick={() => signIn(p.id, { callbackUrl: '/' })}
             >
